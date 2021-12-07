@@ -9,24 +9,21 @@ export default () => {
         const searchApi = async (searchTerm) => {
             //console.log("hi there!");
             try{
-            const responce = await yelp.get("/search",{
-                param:{
+            const response = await yelp.get("/search",{
+                params:{
                     limit:50,
                     term:searchTerm,
                     location:'san jose'
                 },
             });
-       
-            setResult(response.data.business);
+            setResult(response.data.businesses);
         }catch(err){
-            // console.log(err);
             setErrorMessage("Somthing went wrong!");
         }
         };
     
         useEffect(() => {
-            searchApi('pasta');
+            searchApi('meat');
         }, []);
-
         return [searchApi, result, errorMessage];
 };
